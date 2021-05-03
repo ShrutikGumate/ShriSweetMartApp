@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InfoFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCart"
+            android:layout_width="match_parent"
+            android:layout_height="574dp"
+            android:layout_weight="8">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:paddingLeft="5dp"
+                android:text="Checkout Price"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@color/bottombar"
+                android:layout_weight="1">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkoutprice"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:paddingLeft="5dp"
+                android:text="0"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@color/bottombar"
+                android:layout_weight="1">
+            </TextView>
+
+        </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonCheckOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsbold"
+                android:gravity="center"
+                android:text="Checkout"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints"
+                android:layout_weight="1">
+
+            </Button>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

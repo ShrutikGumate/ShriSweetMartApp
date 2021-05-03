@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1023915572982",
+    "project_id": "sweet-shop-ca109",
+    "storage_bucket": "sweet-shop-ca109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023915572982:android:a1acc884251b5573f6f6d7",
+        "android_client_info": {
+          "package_name": "com.example.sweetshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023915572982-qbfklgbaqip2fj4rbagk4cnfkikhnnb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcW-H6VrE7VqNB-Sh_jjMZ3xXXaTADTZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023915572982-qbfklgbaqip2fj4rbagk4cnfkikhnnb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

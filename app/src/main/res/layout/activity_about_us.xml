@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AboutUs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="144dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@mipmap/ic_logo2_foreground">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:id="@+id/Welcome"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="30dp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Shri Sweet Mart is an E-commerce application where you can purchase different types of sweets and get it delivered to your safely.
+            \n\nIt is a Sweet Shop based in Pune which is well known for their fresh and tasty sweets.
+            \n\nThis application project is developed by Final year students(Information Technology) 2021 batch Group no. I3-2 of Walchand Institute of Technology,Solapur under the guidance of S. Karpe Madam and Gambhire Sir."
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="18dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/colorAccent">
+
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#134BD8</color>
+    <color name="colorAccent">#6A0C9E</color>
+    <color name="bottombar">#6A0C9E</color>
+    <color name="dashboard">#FFB10C6F</color>
+    <color name="history">#FFDF6616</color>
+    <color name="info">#FF134BD8</color>
+
+
+</resources>

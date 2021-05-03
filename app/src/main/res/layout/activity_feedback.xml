@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Feedback">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FEEDBACK"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/bottombar">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We would love to here your feedback.."
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/bottombar">
+
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="Give feedback here"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feedbackET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_baseline_comment_24"
+                android:drawableRight="@drawable/ic_baseline_comment_24"
+                android:fontFamily="@font/poppinsmedium"
+                tools:targetApi="jelly_bean" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Send"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            tools:ignore="MissingConstraints">
+        </Button>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

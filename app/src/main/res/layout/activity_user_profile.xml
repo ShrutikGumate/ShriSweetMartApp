@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:src="@drawable/user_profile_default">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@color/bottombar"
+                android:layout_weight="2">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/fullnameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your name"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@color/bottombar"
+                android:layout_weight="1">
+            </TextView>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:layout_weight="2">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/emailTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="e.g. xyz@gmail.com"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:layout_weight="1">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:layout_weight="2">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/phonenumberTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="e.g. 0123456789"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:layout_weight="1">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:layout_weight="2">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/addressET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="give here"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/bottombar"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:layout_weight="1">
+            </EditText>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Save"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            tools:ignore="MissingConstraints">
+
+        </Button>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

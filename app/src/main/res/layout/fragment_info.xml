@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="144dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@mipmap/ic_logo2_foreground">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome!"
+            android:id="@+id/Welcome"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="40dp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center">
+
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="your name"
+            android:id="@+id/title"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:id="@+id/buttonOrderHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Order History"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buttonUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Your profile"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buttonFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Give Feedback here"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buttonContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Contact Us"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buttonAboutUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="About Us"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+            <Button
+                android:id="@+id/buttonLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsbold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="LogOut"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center|bottom">
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
