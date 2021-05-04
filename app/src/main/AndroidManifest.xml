@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".Payment"></activity>
+        <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".Feedback" />
         <activity android:name=".UserProfile" />

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sweetshop.Model.Contactdata;
 import com.example.sweetshop.Model.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -74,6 +75,7 @@ public class UserProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Enable to fetch user details", Toast.LENGTH_LONG).show();
             }
         });
+
 
         reference2.addChildEventListener(new ChildEventListener() {
             @Override
