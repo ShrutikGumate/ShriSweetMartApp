@@ -55,7 +55,7 @@ public class HistoryFragment extends Fragment {
     private DatabaseReference DBref,DBref2,DBref3,DBref4,databaseReference;
     private FirebaseUser user;
     private String userID;
-    private TextView TVcheckoutprice,TotalQuantityTV;
+    private TextView TVcheckoutprice;
     private static int checkoutprice=0;
     private Button btnCheckOut;
     private ArrayList<Data> datalist = new ArrayList<Data>();
@@ -64,7 +64,6 @@ public class HistoryFragment extends Fragment {
     private ArrayList<Orderitem> orderitems_list = new ArrayList<Orderitem>();
     private ArrayList<RemoveQuantity> rq_list = new ArrayList<RemoveQuantity>();
     private ArrayList<Integer> TQ_list = new ArrayList<Integer>();
-    private ArrayList<Integer> TQ_list2 = new ArrayList<Integer>();
 
 
     @Override
@@ -87,44 +86,26 @@ public class HistoryFragment extends Fragment {
 
         recyclerView =myview.findViewById(R.id.recyclerCart);
         TVcheckoutprice=myview.findViewById(R.id.checkoutprice);
-        TotalQuantityTV=myview.findViewById(R.id.TotalQuantity2);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
 
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
-
                 if (HistoryFragment.checkoutprice > 0) {
 
-                    int i = 0;
                     for (Cartdata cartitem : cartitems) {
 
-                        DBref4 = FirebaseDatabase.getInstance().getReference("Quantities").child(cartitem.getProduct_id());
-
-                        readData(new FirebaseCallback() {
-                            @Override
-                            public void onCallback(ArrayList<Integer> list) {
-                                list.get(0);
-                            }
-                        });
-                        //TotalQuantity = Integer.parseInt(TotalQuantityTV.getText().toString());
-
-
-
-                        //TotalQuantityTV.setText(TQ_list.toString());
-
                         HashMap hashMap = new HashMap();
-                        int x =  - cartitem.getQuantity();
-                        i++;
+                        int x = cartitem.getTotal_quantity() - cartitem.getQuantity();
                         hashMap.put("total_quantity", x);
                         DBref2.child(cartitem.getProduct_id()).updateChildren(hashMap);
 
@@ -150,8 +131,6 @@ public class HistoryFragment extends Fragment {
 
 
                     }
-                    //TVcheckoutprice.setText(list.toString());
-
 
                     databaseReference = FirebaseDatabase.getInstance().getReference("CartDB").child(userID);
                     databaseReference.removeValue();
@@ -179,30 +158,6 @@ public class HistoryFragment extends Fragment {
 
 
         return myview;
-    }
-
-    private void readData(final FirebaseCallback firebaseCallback){
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot ds: snapshot.getChildren()){
-                    int tq = ds.child("total_quantity").getValue(Integer.class);
-                    TQ_list.add(tq);
-                }
-                firebaseCallback.onCallback(TQ_list);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        DBref4.addListenerForSingleValueEvent(valueEventListener);
-    }
-
-    private interface FirebaseCallback{
-        void onCallback(ArrayList<Integer> list);
     }
 
     @Override
@@ -248,6 +203,8 @@ public class HistoryFragment extends Fragment {
 
 
         recyclerView.setAdapter(adapter);
+
+
     }
 
     public static class HistoryviewHolder extends RecyclerView.ViewHolder{
@@ -297,8 +254,5 @@ public class HistoryFragment extends Fragment {
         }
 
     }
-
-
-
 
 }

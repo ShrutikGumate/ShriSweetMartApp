@@ -23,6 +23,8 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,14 +80,6 @@
                 android:layout_weight="1">
 
             </Button>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TotalQuantity2"
-                android:text="Total Quantity"
-                android:visibility="visible">
-            </TextView>
 
     </LinearLayout>
     </LinearLayout>
