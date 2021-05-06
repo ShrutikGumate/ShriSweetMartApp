@@ -57,5 +57,12 @@
         android:layout_centerHorizontal="true"
         android:text="Pay Now"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TotalQuantity"
+        android:visibility="gone">
+    </TextView>
+
 
 </LinearLayout>

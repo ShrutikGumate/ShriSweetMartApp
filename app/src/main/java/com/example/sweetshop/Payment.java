@@ -13,12 +13,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sweetshop.Model.Data;
+import com.example.sweetshop.Model.Orderitem;
+import com.example.sweetshop.Model.RemoveQuantity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Payment extends AppCompatActivity {
@@ -27,6 +39,12 @@ public class Payment extends AppCompatActivity {
     Button send;
     String TAG ="main";
     final int UPI_PAYMENT = 0;
+
+    private ArrayList<Orderitem> orderitems_list = new ArrayList<Orderitem>();
+    private ArrayList<RemoveQuantity> rq_list = new ArrayList<RemoveQuantity>();
+    private DatabaseReference databaseReference,DBref3,DBref2;
+    private String userID;
+    private TextView TotalQuantityTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +56,13 @@ public class Payment extends AppCompatActivity {
         note = (EditText)findViewById(R.id.note);
         name = (EditText) findViewById(R.id.name);
         upivirtualid =(EditText) findViewById(R.id.upi_id);
+
+        Intent intent=getIntent();
+        orderitems_list = (ArrayList<Orderitem>)intent.getSerializableExtra("orderitems_list");
+        rq_list = (ArrayList<RemoveQuantity>)intent.getSerializableExtra("rq_list");
+        userID=intent.getStringExtra("userID");
+        TotalQuantityTV = findViewById(R.id.TotalQuantity);
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,6 +166,39 @@ public class Payment extends AppCompatActivity {
             }
             if (status.equals("success")) {
                 //Code to handle successful transaction here.
+
+                DBref2 = FirebaseDatabase.getInstance().getReference("Products");
+                DBref3 = FirebaseDatabase.getInstance().getReference().child(userID);
+                int i = 0;
+
+                for(Orderitem orderitem : orderitems_list) {
+                    String id = DBref3.push().getKey();
+                    int TotalQuantity = 0;
+                    DBref2.child(rq_list.get(i).getProduct_id()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Data data = snapshot.getValue(Data.class);
+                            TotalQuantityTV.setText(Integer.toString(data.getTotal_quantity()));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    TotalQuantity = Integer.parseInt(TotalQuantityTV.getText().toString());
+                    HashMap hashMap = new HashMap();
+                    int x = TotalQuantity - rq_list.get(i).getQuantity();
+                    hashMap.put("total_quantity", x);
+
+                    DBref3.child(id).setValue(orderitem);
+                    DBref2.child(rq_list.get(i).getProduct_id()).updateChildren(hashMap);
+                }
+
+                databaseReference = FirebaseDatabase.getInstance().getReference("CartDB").child(userID);
+                databaseReference.removeValue();
+
                 Toast.makeText(Payment.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
                 Log.e("UPI", "payment successfull: "+approvalRefNo);
             }
@@ -172,5 +230,4 @@ public class Payment extends AppCompatActivity {
 }
 
 
-    }
-}
+

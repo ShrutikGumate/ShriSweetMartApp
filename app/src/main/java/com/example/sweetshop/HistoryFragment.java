@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,12 @@ import android.widget.Toast;
 import com.example.sweetshop.Model.Cartdata;
 import com.example.sweetshop.Model.Data;
 import com.example.sweetshop.Model.Orderitem;
+import com.example.sweetshop.Model.RemoveQuantity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +43,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -48,15 +52,19 @@ public class HistoryFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    private DatabaseReference DBref,DBref2,DBref3,databaseReference;
+    private DatabaseReference DBref,DBref2,DBref3,DBref4,databaseReference;
     private FirebaseUser user;
     private String userID;
-    private TextView TVcheckoutprice;
+    private TextView TVcheckoutprice,TotalQuantityTV;
     private static int checkoutprice=0;
     private Button btnCheckOut;
     private ArrayList<Data> datalist = new ArrayList<Data>();
     private ArrayList<Cartdata> cartitems = new ArrayList<Cartdata>();
     private ArrayList<Integer> cartitemquantity = new ArrayList<Integer>();
+    private ArrayList<Orderitem> orderitems_list = new ArrayList<Orderitem>();
+    private ArrayList<RemoveQuantity> rq_list = new ArrayList<RemoveQuantity>();
+    private ArrayList<Integer> TQ_list = new ArrayList<Integer>();
+    private ArrayList<Integer> TQ_list2 = new ArrayList<Integer>();
 
 
     @Override
@@ -74,9 +82,12 @@ public class HistoryFragment extends Fragment {
 
         DBref = FirebaseDatabase.getInstance().getReference().child("CartDB").child(userID);
         DBref.keepSynced(true);
+        DBref2 = FirebaseDatabase.getInstance().getReference("Products");
+        DBref3 = FirebaseDatabase.getInstance().getReference("OrderHistory");
 
         recyclerView =myview.findViewById(R.id.recyclerCart);
         TVcheckoutprice=myview.findViewById(R.id.checkoutprice);
+        TotalQuantityTV=myview.findViewById(R.id.TotalQuantity2);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
@@ -92,54 +103,107 @@ public class HistoryFragment extends Fragment {
             public void onClick(View view) {
 
 
-                int i = 0;
+                if (HistoryFragment.checkoutprice > 0) {
 
-                if(HistoryFragment.checkoutprice > 0) {
-
-                    DBref2 = FirebaseDatabase.getInstance().getReference("Products");
-                    DBref3 = FirebaseDatabase.getInstance().getReference("OrderHistory");
+                    int i = 0;
                     for (Cartdata cartitem : cartitems) {
 
+                        DBref4 = FirebaseDatabase.getInstance().getReference("Quantities").child(cartitem.getProduct_id());
+
+                        readData(new FirebaseCallback() {
+                            @Override
+                            public void onCallback(ArrayList<Integer> list) {
+                                list.get(0);
+                            }
+                        });
+                        //TotalQuantity = Integer.parseInt(TotalQuantityTV.getText().toString());
+
+
+
+                        //TotalQuantityTV.setText(TQ_list.toString());
 
                         HashMap hashMap = new HashMap();
-                        int x = cartitem.getTotal_quantity() - cartitem.getQuantity();
+                        int x =  - cartitem.getQuantity();
+                        i++;
                         hashMap.put("total_quantity", x);
                         DBref2.child(cartitem.getProduct_id()).updateChildren(hashMap);
 
                         String date = String.valueOf(java.time.LocalDate.now());
                         String time = String.valueOf(java.time.LocalTime.now());
                         HashMap hashMap2 = new HashMap();
-                        hashMap2.put("date",date);
-                        hashMap2.put("time",time);
+                        hashMap2.put("date", date);
+                        hashMap2.put("time", time);
 
                         String id = DBref3.push().getKey();
 
-                        Orderitem orderitem = new Orderitem(id,cartitem.getProduct_id(),cartitem.getTitle(),cartitem.getImage(),cartitem.getPrice(),cartitem.getQuantity(),date,time);
+                        Orderitem orderitem = new Orderitem(id, cartitem.getProduct_id(), cartitem.getTitle(), cartitem.getImage(), cartitem.getPrice(), cartitem.getQuantity(), date, time);
+
 
                         DBref3.child(userID).child(id).setValue(orderitem);
                         DBref3.child(userID).child(id).updateChildren(hashMap2);
 
+
+                        //new code from here
+
+                        orderitems_list.add(orderitem);
+                        rq_list.add(new RemoveQuantity(id, cartitem.getQuantity()));
+
+
                     }
+                    //TVcheckoutprice.setText(list.toString());
+
+
                     databaseReference = FirebaseDatabase.getInstance().getReference("CartDB").child(userID);
                     databaseReference.removeValue();
+
 
                     Toast.makeText(myview.getContext(), "Checkout Successfully!", Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(myview.getContext(), MainActivity.class);
+                    intent.putExtra("orderitems_list", orderitems_list);
+                    intent.putExtra("rq_list", rq_list);
+                    intent.putExtra("userID", userID);
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(myview.getContext(), "Please add at least 1 item!", Toast.LENGTH_LONG).show();
-                }
 
+                }
+                else
+
+            {
+                Toast.makeText(myview.getContext(), "Please add at least 1 item!", Toast.LENGTH_LONG).show();
             }
+        }
+
         });
+
 
 
 
         return myview;
     }
 
+    private void readData(final FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    int tq = ds.child("total_quantity").getValue(Integer.class);
+                    TQ_list.add(tq);
+                }
+                firebaseCallback.onCallback(TQ_list);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        DBref4.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private interface FirebaseCallback{
+        void onCallback(ArrayList<Integer> list);
+    }
 
     @Override
     public void onStart() {
@@ -233,6 +297,8 @@ public class HistoryFragment extends Fragment {
         }
 
     }
+
+
 
 
 }
