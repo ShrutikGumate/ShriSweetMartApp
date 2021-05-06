@@ -121,6 +121,9 @@ public class CatOneDetails extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),"Added to Cart",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+                finish();
                 closekeyboard();
             }
         }
