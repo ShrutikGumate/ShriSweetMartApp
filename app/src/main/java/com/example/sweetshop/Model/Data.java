@@ -9,17 +9,19 @@ public class Data {
     private int price;
     private String id;
     private int total_quantity;
+    private double ratings;
 
     public Data(){
 
     }
 
-    public Data(String image, String title, String description,int price, String id,int total_quantity) {
+    public Data(String image, String title, String description,int price, String id,int total_quantity,double ratings) {
         this.image = image;
         this.title = title;
         this.description = description;
         this.price=price;
         this.id = id;
+        this.ratings=ratings;
     }
 
     public String getImage() {
@@ -66,5 +68,13 @@ public class Data {
 
     public void setTotal_quantity(int total_quantity) {
         this.total_quantity = total_quantity;
+    }
+
+    public double getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(double ratings) {
+        this.ratings = ratings;
     }
 }

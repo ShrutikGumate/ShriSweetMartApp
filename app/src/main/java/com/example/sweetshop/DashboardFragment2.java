@@ -68,7 +68,7 @@ public class DashboardFragment2 extends Fragment {
             @Override
             protected void populateViewHolder(Dashboard2viewHolder dashboard2viewHolder, final Data data, final int i) {
                 dashboard2viewHolder.setTitle(data.getTitle());
-                //dashboard2viewHolder.setDescription(data.getDescription());
+                dashboard2viewHolder.setRatings(data.getRatings());
                 dashboard2viewHolder.setPrice(data.getPrice());
                 dashboard2viewHolder.setImage(data.getImage());
 
@@ -82,6 +82,7 @@ public class DashboardFragment2 extends Fragment {
                         intent.putExtra("image",data.getImage());
                         intent.putExtra("id",data.getId());
                         intent.putExtra("total_quantity",Integer.toString(data.getTotal_quantity()));
+                        intent.putExtra("ratings",Double.toString(data.getRatings()));
 
                         startActivity(intent);
                     }
@@ -114,6 +115,11 @@ public class DashboardFragment2 extends Fragment {
         public void setPrice(int price){
             TextView myprice=mview.findViewById(R.id.post_price);
             myprice.setText(Integer.toString(price) + "/- per Kg");
+        }
+
+        public void setRatings(double ratings){
+            TextView myratings=mview.findViewById(R.id.ratings);
+            myratings.setText(Double.toString(ratings) + " / 5");
         }
 
         public void setImage(final String image){

@@ -29,13 +29,13 @@ import java.util.Objects;
 public class CatOneDetails extends AppCompatActivity {
 
     private ImageView imageView;
-    private TextView title,description,price;
+    private TextView title,description,price,ratings;
     private EditText quantity;
     private Button AddtoCart;
 
     private FirebaseUser user;
-    DatabaseReference cartdbreference;
-    private String userID,mTitle,mDescription,product_id;
+    private DatabaseReference cartdbreference;
+    private String userID,mTitle,mDescription,product_id,mratings;
     private String mPrice;
     private String total_quantity;
 
@@ -60,6 +60,7 @@ public class CatOneDetails extends AppCompatActivity {
         price=findViewById(R.id.price_dt);
         quantity=findViewById(R.id.quantity_dt);
         AddtoCart=findViewById(R.id.btnAddtoCart);
+        ratings=findViewById(R.id.ratings_dt);
 
         Intent intent=getIntent();
         mTitle=intent.getStringExtra("title");
@@ -68,10 +69,12 @@ public class CatOneDetails extends AppCompatActivity {
         mImage=intent.getStringExtra("image");
         product_id=intent.getStringExtra("id");
         total_quantity=intent.getStringExtra("total_quantity");
+        mratings=intent.getStringExtra("ratings");
 
         title.setText(mTitle);
         description.setText(mDescription);
         price.setText(mPrice + "/- per Kg");
+        ratings.setText(mratings + " / 5");
 
         Picasso.get().load(mImage).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
             @Override
