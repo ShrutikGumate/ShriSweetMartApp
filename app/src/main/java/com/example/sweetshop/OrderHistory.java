@@ -83,6 +83,7 @@ public class OrderHistory extends AppCompatActivity {
                 historyviewHolder.setTotal(orderitem.getPrice(),orderitem.getQuantity());
                 historyviewHolder.setImage(orderitem.getImage());
                 historyviewHolder.setDateandTime(orderitem.getDate(),orderitem.getTime());
+                historyviewHolder.setId(orderitem.getOrder_id());
 
 
 
@@ -99,6 +100,11 @@ public class OrderHistory extends AppCompatActivity {
         public OHistoryviewHolder(@NonNull View itemView) {
             super(itemView);
             mview =itemView;
+        }
+
+        public void setId(String id){
+            TextView myid = mview.findViewById(R.id.TVid);
+            myid.setText("Order ID       "+id);
         }
 
         public void setTitle(String title){
